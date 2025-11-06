@@ -1,17 +1,14 @@
 # FM Radio Receiver with Digital Tuning
 
-Build an FM receiver using a tuner module (e.g., **Si4703**).  
-Include a display to show the tuned frequency and simple buttons for tuning.  
-Optionally, consider implementing **RDS (Radio Data System)**.
+Build an FM receiver using a tuner module (e.g., Si4703). Include a display to show frequency and simple buttons for tuning. Consider an RDS (Radio Data System).
 
 ---
 
 ## 1. Problem Statement & Solution Overview
 
 ### 1.1 Problem Statement
-- Clearly describe the problem being addressed.
-- Explain why an FM radio receiver with digital tuning is useful or interesting.
-- Outline any requirements or constraints (e.g., frequency range, audio quality, UI simplicity).
+Our goal is to create a simple FM radio using an Arduino UNO and an Si4703 FM tuner module. The radio will allow users to adjust the desired FM frequency using buttons, and the selected frequency will be displayed on an OLED screen.
+
 
 ### 1.2 Proposed Solution (MCU-Based)
 - Explain how your proposed solution uses a **microcontroller (MCU)** to:
@@ -25,10 +22,10 @@ Optionally, consider implementing **RDS (Radio Data System)**.
 
 #### List of Components
 Provide a list of:
-- **MCU board** (e.g., Arduino, STM32, etc.)
-- **FM tuner module** (e.g., Si4703)
-- **Display** (LCD/OLED/TFT)
-- **Input controls** (buttons, rotary encoder, etc.)
+- **MCU board** (Arduino UNO)
+- **FM tuner module** (Si4703)
+- **Display** (OLED)
+- **Input controls** (buttons, rotary encoder)
 - **Audio output** (speaker, headphone jack, amplifier)
 - **Power supply** (battery, USB, regulator)
 - Any **passive/active components** (resistors, capacitors, op-amps, etc.)
