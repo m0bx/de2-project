@@ -7,37 +7,26 @@ Build an FM receiver using a tuner module (e.g., Si4703). Include a display to s
 ## 1. Problem Statement & Solution Overview
 
 ### 1.1 Problem Statement
-Our goal is to create a simple FM radio using an Arduino UNO and an Si4703 FM tuner module. The radio will allow users to adjust the desired FM frequency using buttons, and the selected frequency will be displayed on an OLED screen.
+Our project is the development of an FM radio receiver controlled by an Arduino UNO microcontroller and an Si4703 FM tuner module.
 
+The user will be able to set the desired radio station frequency using buttons, with the selected frequency shown on an OLED display. The display will also show information broadcast by stations using the Radio Data System (RDS).
 
-### 1.2 Proposed Solution (MCU-Based)
-- Explain how your proposed solution uses a **microcontroller (MCU)** to:
-  - Control the FM tuner module (e.g., via I²C).
-  - Handle user input (buttons for tuning, volume, etc.).
-  - Drive the display (showing frequency and/or RDS data).
-  - Manage system states and overall logic.
-- Summarize the main features (e.g., seek/scan, preset stations, mute, RDS text).
+Additionally, we aim to add the functionality to save several favorite stations as presets, which could then be selected using other dedicated buttons.
 
-### 1.3 Hardware Components
+### 1.2 Hardware Components
 
 #### List of Components
 Provide a list of:
-- **MCU board** (Arduino UNO)
-- **FM tuner module** (Si4703)
-- **Display** (OLED)
-- **Input controls** (buttons, rotary encoder)
-- **Audio output** (speaker, headphone jack, amplifier)
-- **Power supply** (battery, USB, regulator)
-- Any **passive/active components** (resistors, capacitors, op-amps, etc.)
-
-#### Justification
-For each component, briefly justify:
-- Why it is needed in the system.
-- Why this particular choice (e.g., ease of use, availability, performance).
+- **MCU board** (Arduino UNO) - Serves as the radio's control unit, managing communication between all components.
+- **FM tuner module** (Si4703) - A module used to receive radio signals in the 76-108 MHz range, including RDS data. It requires an antenna (headphones) to receive the signal.
+- **Display** (OLED) - Used to display information about the current frequency and RDS data.
+- **Input controls** (buttons, rotary encoder) - These are used for setting the desired frequency, initiating a search for the next available station, or saving favorite stations to memory.
+- **Audio output** (headphone jack) - Serves as the audio output and simultaneously functions as the antenna.
+- Any **passive/active components** (resistors, capacitors)
 
 ---
 
-## 1.4 Software Design
+## 1.3 Software Design
 
 Describe the planned software structure:
 
