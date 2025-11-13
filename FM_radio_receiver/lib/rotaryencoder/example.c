@@ -1,29 +1,39 @@
 #include <avr/io.h>
-#include <lib/gpio/gpio.h>
-#include "rotary_encoder.h"
+#include <avr/interrupt.h>
+#include "gpio.h"
 #include "timer.h"
+#include "rotary_encoder.h"
+// example usage of the rotary encoder lib, periodical check is done using interrupts (inefficient but works)
+
+// t0 every 1 ms
+ISR(TIMER0_OVF_vect)
+{
+    encoder_update();
+}
+
 
 int main(void)
 {
-    // LEDs on PORTB as outputs
+    // LED
     gpio_mode_output(&DDRB, 5);
-
     encoder_init();
 
-    while (1) {
-        encoder_update();
+    tim0_ovf_1ms();
+    tim0_ovf_enable();
 
-        // toggle when moved
+    sei();
+
+    while (1) {
+        // Get movement since last check
         int8_t d = encoder_get_delta();
         if (d != 0) {
+            // Toggle LED on move
             gpio_toggle(&PORTB, 5);
         }
 
-        // reset position when button pressed
+        // Reset position when button pressed
         if (encoder_button_pressed()) {
             encoder_set_position(0);
         }
-
-        _delay_ms(2);  // update every ~2 ms
     }
 }
