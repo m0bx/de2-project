@@ -1,0 +1,84 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <util/atomic.h>
+#include <stdlib.h>
+#include "uart.h"
+#include "gpio.h"
+#include "rotary_encoder.h"
+
+#define UART_BAUD_RATE 9600
+#define LED_PIN 5
+
+static void uart_print_int(int16_t value) {
+    char buffer[7];
+    itoa(value, buffer, 10);
+    uart_puts(buffer);
+}
+
+void timer1_init(void) {
+    TCCR1A = 0;
+    
+    TCCR1B |= (1 << CS11);
+    
+    TIMSK1 |= (1 << TOIE1);
+}
+
+ISR(TIMER1_OVF_vect) {
+    encoder_update();
+}
+
+int main(void) {
+    gpio_mode_output(&DDRB, LED_PIN);
+    
+    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
+    
+    encoder_init();
+    
+    timer1_init();
+    
+    sei();
+
+    uint8_t btn_was_pressed = 0;
+
+    while (1) {
+        
+        int8_t delta = encoder_get_delta();
+        
+        if (delta != 0) {
+            gpio_toggle(&PORTB, LED_PIN);
+            
+            int16_t pos;
+            
+            ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+                pos = encoder_get_position();
+            }
+            
+            uart_puts("D: ");
+            uart_print_int(delta);
+            uart_puts(" | Pos: ");
+            uart_print_int(pos);
+            uart_puts("\r\n");
+        }
+
+        if (encoder_button_pressed()) {
+            if (!btn_was_pressed) {
+                _delay_ms(20);
+                
+                if (encoder_button_pressed()) {
+                    
+                    ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+                        encoder_set_position(0);
+                    }
+                    
+                    uart_puts(">> Button Pressed: Position Reset <<\r\n");
+                    btn_was_pressed = 1;
+                }
+            }
+        } else {
+            btn_was_pressed = 0;
+        }
+    }
+    
+    return 0;
+}
