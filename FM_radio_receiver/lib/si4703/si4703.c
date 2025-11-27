@@ -87,7 +87,12 @@ void si4703_init(volatile uint8_t *rst_port, volatile uint8_t *rst_ddr, uint8_t 
 
     // KROK 1: Zapnout OSCILÁTOR (XOSCEN) v registru 07h
     // Registry 02h-06h necháme na 0 (hlavně 02h ENABLE musí být 0!)
-    shadow_regs[0x07] = 0xBC04; // Bit 15 = XOSCEN
+
+    // datasheet page 29 "Bits 13:0 of register 07h (TEST2)
+    // must be preserved as 0x0100 while in powerdown and
+    //  as 0x3C04 while in powerup"
+
+    shadow_regs[0x07] = 0xBC04; // Bit 15 XOSCEN = 1, BIT 14 AHIZEN = 0 | 0x3C04
     
     write_registers(); // Zapíše reg 02=0000 ... reg 07=8100
     
