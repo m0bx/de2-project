@@ -101,10 +101,10 @@ The main program loop is located in the 'main' source file. It contains the core
 ```
 
 ### 2.3 Technical Documentation
-- **Circuit schematics**
+#### Circuit schematics
 The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_receiver_scheme.pdf
 
-- **Pseudocode**
+#### Pseudocode
 
 <div align="center">
 <img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Pseudocode.png" />
