@@ -67,6 +67,14 @@ Additionally, we created the 'rotaryencoder' library to handle the rotary encode
 
 The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage display output, communicate with the Si4703 module, and respond to button inputs. Artificial intelligence tools, specifically ChatGPT and Gemini, were used during the development process.
 
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124655.jpg" />
+</div>
+
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124657.jpg" />
+</div>
+
 #### Project structure
 
  ```c
@@ -112,3 +120,9 @@ The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_
 
 ### 2.4 Poster
 
+## References
+- AI model ChatGPT for editing text and support for programming https://chatgpt.com/
+- AI model Gemini for editing text and support for programming https://gemini.google.com/app
+- Si4703 datasheets https://www.alldatasheet.com/view.jsp?Searchword=Si4703%20datasheet&gad_source=1&gad_campaignid=149541607
+- DE2 labs libraries https://github.com/tomas-fryza/avr-labs/tree/master
+- Example library for rotary encoder https://github.com/mhx/librotaryencoder
