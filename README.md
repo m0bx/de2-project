@@ -26,19 +26,8 @@ Provide a list of:
 ---
 
 ## 1.3 Software Design
-
-Describe the planned software structure:
-
 - **System-level block diagram**
-  - Show MCU, tuner module, display, buttons, audio output, etc.
-- **Flowcharts / State diagrams**
-  - Power-up & initialization
-  - Station tuning & scanning
-  - Display update logic
-  - Optional: RDS data handling
-- **Pseudocode**
-  - Main loop structure
-  - Key functions (e.g., `tuneFrequency()`, `readRDS()`, `updateDisplay()`)
+https://github.com/m0bx/de2-project/blob/main/Block_diagram.png
 
 ---
 
