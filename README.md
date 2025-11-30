@@ -110,5 +110,5 @@ The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_
 <img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Pseudocode.png" />
 </div>
 
-### 2.4 Pitch Poster
+### 2.4 Poster
 
