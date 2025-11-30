@@ -9,7 +9,7 @@ Build an FM receiver using a tuner module (e.g., Si4703). Include a display to s
 ### 1.1 Problem Statement
 Our project is the development of an FM radio receiver controlled by an Arduino UNO microcontroller and an Si4703 FM tuner module.
 
-The user will be able to set the desired radio station frequency using buttons, with the selected frequency shown on an OLED display. The display will also show information broadcast by stations using the Radio Data System (RDS).
+The user will be able to adjust the desired radio frequency using buttons or a rotary encoder, with the selected frequency displayed on an OLED screen. The display will also show RDS (Radio Data System) information and the signal strength of the currently tuned station.
 
 Additionally, we aim to add the functionality to save several favorite stations as presets, which could then be selected using other dedicated buttons.
 
@@ -20,9 +20,8 @@ Provide a list of:
 - **MCU board** (Arduino UNO) - Serves as the radio's control unit, managing communication between all components.
 - **FM tuner module** (Si4703) - A module used to receive radio signals in the 76-108 MHz range, including RDS data. It requires an antenna (headphones) to receive the signal.
 - **Display** (OLED) - Used to display information about the current frequency and RDS data.
-- **Input controls** (buttons, rotary encoder) - These are used for setting the desired frequency, initiating a search for the next available station, or saving favorite stations to memory.
+- **Input controls** (buttons, rotary encoder) - These are used for setting the desired frequency, initiating a search for the next available station, or muting/unmuting current station.
 - **Audio output** (headphone jack) - Serves as the audio output and simultaneously functions as the antenna.
-- Any **passive/active components** (resistors, capacitors)
 
 ---
 
@@ -89,18 +88,3 @@ A visually appealing poster summarizing:
 - **System design** and main modules.
 - **Functionality & features**.
 - **Value, applications, and potential impact**.
-
----
-
-## 3. Demonstration
-
-- Present and defend the project in front of instructors and peers.
-- Showcase:
-  - Working prototype.
-  - Pitch poster.
-- Each team member should:
-  - Explain their individual contribution.
-  - Answer technical questions about:
-    - Design decisions.
-    - Implementation details.
-    - Testing and debugging process.
