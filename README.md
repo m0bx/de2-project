@@ -65,7 +65,40 @@ We also developed a custom 'si4703' library to control the Si4703 module. This l
 
 Additionally, we created the 'rotaryencoder' library to handle the rotary encoder, which is used for fine frequency tuning. This library is based on [this existing library](https://github.com/mhx/librotaryencoder), with development assistance from ChatGPT and Gemini.
 
-The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage the display output, communicate with the Si4703 module, and respond to button inputs.
+The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage display output, communicate with the Si4703 module, and respond to button inputs. Artificial intelligence tools, specifically ChatGPT and Gemini, were used during the development process.
+
+#### Project structure
+
+ ```c
+      FM_radio_receiver            // PlatfomIO project
+      ├── include                  // Included file(s)
+      │   └── timer.h
+      ├── lib                      // Libraries
+      │   ├── qpio                 // Tomas Fryza's GPIO library
+      │   │   ├── gpio.c
+      │   │   └── gpio.h
+      │   ├── oled                 // Michael Köhler's OLED library
+      │   │   ├── font.h
+      │   │   ├── oled.c
+      │   │   └── oled.h
+      │   ├── rotaryencoder        // Our rotary encoder library
+      │   │   ├── example.txt
+      │   │   ├── rotary_encoder.c
+      │   │   └── rotary_encoder.h
+      │   ├── si4703               // Our Si4703 library
+      │   │   ├── si4703.c
+      │   │   └── si4703.h
+      │   ├── twi                  // Tomas Fryza's TWI/I2C library
+      │   │   ├── twi.c
+      │   │   └── twi.h
+      │   └── uart                 // Peter Fleury's UART library
+      │       ├── uart.c
+      │       └── uart.h
+      ├── src                      // Source file(s)
+      │   └── main.c
+      ├── test           
+      └── platformio.ini           // Project Configuration File
+```
 
 ### 2.3 Technical Documentation
 Include:
