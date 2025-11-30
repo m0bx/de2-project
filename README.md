@@ -23,6 +23,17 @@ Provide a list of:
 - **Input controls** (buttons, rotary encoder) - These are used for setting the desired frequency, initiating a search for the next available station, or muting/unmuting current station.
 - **Audio output** (headphone jack) - Serves as the audio output and simultaneously functions as the antenna.
 
+#### Inputs
+- **Reset button** - Integrated into the rotary encoder; resets the radio system and restores the default frequency.
+- **Rotary encoder** - Used for manual tuning; allows the user to adjust the frequency in 0.1 MHz increments.
+- **Seek up button** - Initiates an automatic scan to find the next available station with sufficient signal strength in the higher frequency range.
+- **Seek down button** - Initiates an automatic scan to find the next available station with sufficient signal strength in the lower frequency range.
+- **Mute button** - Toggles the audio output state (mute/unmute).
+
+#### Outputs
+- **OLED display** - Visualizes real-time data including the current frequency, RDS information, signal strength (RSSI), volume level, and mute status.
+- **Headphone** - Delivers the audio output from the Si4703 module to the user.
+
 ---
 
 ## 1.3 Software Design
@@ -36,20 +47,16 @@ Provide a list of:
 
 ## 2. Build (Prototype Development)
 
-### 2.1 Objective
+### 2.1 Demonstration video and function description
+https://github.com/m0bx/de2-project/blob/main/Demonstration_video.mp4
 
-### 2.2 Deliverables
+Our project utilizes an Arduino as the main control unit, acting as the Master on the I2C bus to communicate with two Slave devices: the Si4703 FM radio module and an OLED display. The Si4703 module handles signal reception, audio playback, and the decoding of RDS (Radio Data System) data.
 
-#### a)Demonstration Video
-<video src="Demonstration_video.mp4" controls="controls" muted="muted" style="max-width: 100%;">
-</video>
+Tuning is performed either via a rotary encoder, which allows for manual frequency adjustments in 0.1 MHz increments, or using 'Seek Up' and 'Seek Down' buttons. The seek function triggers the Si4703 to automatically search for the nearest station with sufficient signal strength. The rotary encoder also features an integrated push-button used to reset the system and restore the default frequency. Additionally, a dedicated button allows the user to mute or unmute the audio output.
 
-- Clearly explain:
-  - System features.
-  - Operation and user interaction.
-  - Observed performance.
+The OLED display provides essential real-time information, including the current frequency and radio status. During playback, it displays the volume level and signal strength; if the audio is muted, a status indicator appears on the screen. Furthermore, RDS text is displayed whenever successfully received from the station
 
-#### b) Source Code Submission
+### 2.2 Source Code Submission
 - Submit well-documented **C code** (or C-compatible) to **GitHub**.
 - Ensure:
   - Clear folder structure.
@@ -58,7 +65,7 @@ Provide a list of:
   - Key functions and algorithms.
   - Any custom libraries or drivers used.
 
-#### c) Technical Documentation
+### 2.3 Technical Documentation
 Include:
 - **Block diagrams** (system-level architecture).
 - **Circuit schematics** (MCU, tuner, display, audio stage, power stage).
@@ -66,5 +73,5 @@ Include:
   - Major hardware choices.
   - Major software design decisions.
 
-#### d) Pitch Poster
+### 2.4 Pitch Poster
 
