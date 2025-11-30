@@ -56,6 +56,16 @@ Tuning is performed either via a rotary encoder, which allows for manual frequen
 
 The OLED display provides essential real-time information, including the current frequency and radio status. During playback, it displays the volume level and signal strength; if the audio is muted, a status indicator appears on the screen. Furthermore, RDS text is displayed whenever successfully received from the station
 
+For better control of the rotary encoder, we 3D printed a knob downloaded from the link below: https://www.printables.com/model/168924-rotary-encoder-knob/files
+
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124655.jpg" />
+</div>
+
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124657.jpg" />
+</div>
+
 ### 2.2 Source Code Submission
 All source files are available here: https://github.com/m0bx/de2-project/tree/main/FM_radio_receiver
 
@@ -66,14 +76,6 @@ We also developed a custom 'si4703' library to control the Si4703 module. This l
 Additionally, we created the 'rotaryencoder' library to handle the rotary encoder, which is used for fine frequency tuning. This library is based on [this existing library](https://github.com/mhx/librotaryencoder), with development assistance from ChatGPT and Gemini.
 
 The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage display output, communicate with the Si4703 module, and respond to button inputs. Artificial intelligence tools, specifically ChatGPT and Gemini, were used during the development process.
-
-<div align="center">
-<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124655.jpg" />
-</div>
-
-<div align="center">
-<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Actual%20wiring/20251127_124657.jpg" />
-</div>
 
 #### Project structure
 
@@ -126,3 +128,4 @@ The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_
 - Si4703 datasheets https://www.alldatasheet.com/view.jsp?Searchword=Si4703%20datasheet&gad_source=1&gad_campaignid=149541607
 - DE2 labs libraries https://github.com/tomas-fryza/avr-labs/tree/master
 - Example library for rotary encoder https://github.com/mhx/librotaryencoder
+- Rotary encoder knob https://www.printables.com/model/168924-rotary-encoder-knob/files
