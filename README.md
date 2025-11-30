@@ -37,21 +37,12 @@ Provide a list of:
 ## 2. Build (Prototype Development)
 
 ### 2.1 Objective
-- Implement and test a working prototype based on the approved proposal.
-- Use university laboratories and facilities where needed.
-- Circuit construction may include:
-  - Breadboard with passive and active components.
-  - Custom PCB (if available).
 
 ### 2.2 Deliverables
 
-#### a) Prototype Demonstration Video
-- Maximum **3-minute** video.
-- Show the prototype’s **functionality**:
-  - Tuning across FM band.
-  - Display updates.
-  - Audio output.
-  - Optional: RDS features.
+#### a)Demonstration Video
+https://github.com/m0bx/de2-project/blob/main/Demonstration_video.mp4
+
 - Clearly explain:
   - System features.
   - Operation and user interaction.
@@ -74,9 +65,5 @@ Include:
   - Major hardware choices.
   - Major software design decisions.
 
-#### d) Pitch Poster (A3 or Larger)
-A visually appealing poster summarizing:
-- Project **concept and motivation**.
-- **System design** and main modules.
-- **Functionality & features**.
-- **Value, applications, and potential impact**.
+#### d) Pitch Poster
+
