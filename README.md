@@ -27,7 +27,10 @@ Provide a list of:
 
 ## 1.3 Software Design
 - **System-level block diagram**
-https://github.com/m0bx/de2-project/blob/main/Block_diagram.png
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Block_diagram.png" />
+</div>
+
 
 ---
 
