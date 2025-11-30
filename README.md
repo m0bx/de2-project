@@ -36,7 +36,7 @@ Provide a list of:
 
 ---
 
-## 1.3 Software Design
+### 1.3 Software Design
 - **System-level block diagram**
 <div align="center">
 <img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Block_diagram.png" />
@@ -57,13 +57,15 @@ Tuning is performed either via a rotary encoder, which allows for manual frequen
 The OLED display provides essential real-time information, including the current frequency and radio status. During playback, it displays the volume level and signal strength; if the audio is muted, a status indicator appears on the screen. Furthermore, RDS text is displayed whenever successfully received from the station
 
 ### 2.2 Source Code Submission
-- Submit well-documented **C code** (or C-compatible) to **GitHub**.
-- Ensure:
-  - Clear folder structure.
-  - Commented code and meaningful function/variable names.
-- Highlight:
-  - Key functions and algorithms.
-  - Any custom libraries or drivers used.
+All source files are available here: https://github.com/m0bx/de2-project/tree/main/FM_radio_receiver
+
+The project utilizes libraries introduced during the DE2 course semester. Specifically, we used the 'timer', 'gpio', 'oled', 'twi', and 'uart' libraries.
+
+We also developed a custom 'si4703' library to control the Si4703 module. This library was implemented based on the manufacturer's [datasheet](https://github.com/m0bx/de2-project/blob/main/datasheets/Si4703-B16.pdf ) and [programming guide](https://github.com/m0bx/de2-project/blob/main/datasheets/AN230.PDF). Artificial intelligence tools, specifically Gemini and ChatGPT, assisted in the development process.
+
+Additionally, we created the 'rotaryencoder' library to handle the rotary encoder, which is used for fine frequency tuning. This library is based on [this existing library](https://github.com/mhx/librotaryencoder), with development assistance from ChatGPT and Gemini.
+
+The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage the display output, communicate with the Si4703 module, and respond to button inputs.
 
 ### 2.3 Technical Documentation
 Include:
