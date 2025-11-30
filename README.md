@@ -101,12 +101,11 @@ The main program loop is located in the 'main' source file. It contains the core
 ```
 
 ### 2.3 Technical Documentation
-Include:
-- **Block diagrams** (system-level architecture).
-- **Circuit schematics** (MCU, tuner, display, audio stage, power stage).
-- Justifications for:
-  - Major hardware choices.
-  - Major software design decisions.
+- **Circuit schematics**
+The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_receiver_scheme.pdf
+
+- **Justifications for**
+
 
 ### 2.4 Pitch Poster
 
