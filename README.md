@@ -41,7 +41,8 @@ Provide a list of:
 ### 2.2 Deliverables
 
 #### a)Demonstration Video
-https://github.com/m0bx/de2-project/blob/main/Demonstration_video.mp4
+<video src="Demonstration_video.mp4" controls="controls" muted="muted" style="max-width: 100%;">
+</video>
 
 - Clearly explain:
   - System features.
