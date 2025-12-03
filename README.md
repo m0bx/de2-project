@@ -73,7 +73,7 @@ The project utilizes libraries introduced during the DE2 course semester. Specif
 
 We also developed a custom 'si4703' library to control the Si4703 module. This library was implemented based on the manufacturer's [datasheet](https://github.com/m0bx/de2-project/blob/main/datasheets/Si4703-B16.pdf ) and [programming guide](https://github.com/m0bx/de2-project/blob/main/datasheets/AN230.PDF). Artificial intelligence tools, specifically Gemini and ChatGPT, assisted in the development process.
 
-Additionally, we created the 'rotaryencoder' library to handle the rotary encoder, which is used for fine frequency tuning. This library is based on [this existing library](https://github.com/mhx/librotaryencoder), with development assistance from ChatGPT and Gemini.
+Additionally, we created the 'rotaryencoder' library to handle the rotary encoder, which is used for fine frequency tuning. This library was inspired by [this existing library](https://github.com/mhx/librotaryencoder), but was written from scratch.
 
 The main program loop is located in the 'main' source file. It contains the core application logic, utilizing the aforementioned libraries to manage display output, communicate with the Si4703 module, and respond to button inputs. Artificial intelligence tools, specifically ChatGPT and Gemini, were used during the development process.
 
