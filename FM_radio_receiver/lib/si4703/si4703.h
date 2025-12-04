@@ -1,74 +1,88 @@
-/*
- * si4703.h
- * Ovladač pro FM tuner Si4703 s podporou RDS a audio výstupu.
- * Platforma: AVR/ATmega328P (bez Arduino frameworku)
- */
+ /**
+  * @file si4703.h
+  * @defgroup si4703 Si4703 Library <si4703.h>
+  * @code #include <si4703.h> @endcode
+  * 
+  * @brief Si4703 FM radio module library based on Tomas Fryza's TWI library
+  * 
+  * Library for interacting with the Si4703 FM radio module.
+  * This library was developed for the purposes of a DE2 class project and does
+  * not offer full functionality.
+  * 
+  * inspired by the SparkFun Si4703 Arduino library and
+  * the bare metal AVR_SI4703 library from github user eziya
+  * 
+  * Developed for ATmega328p/Arduino Uno R3
+  * @{
+  */
 
 #ifndef SI4703_H
 #define SI4703_H
 
 #include <stdint.h>
 
-// I2C Adresa Si4703
+// I2C address for Si4703
 #define SI4703_ADDR 0x10
 
-// Definice pro Evropu (87.5 - 108.0 MHz)
+// FM radio frequency range for EU (87.5 - 108.0 MHz)
 #define FREQ_MIN 8750
 #define FREQ_MAX 10800
 
-// Směry ladění
+// Seeking directions
 #define SEEK_DOWN 0
 #define SEEK_UP   1
 
-// Struktura pro uchování RDS dat (Název stanice)
+// struct for keeping RDS (station info) data
 typedef struct {
-    char stationName[9]; // 8 znaků + nulový terminátor
-    uint8_t ready;       // Příznak, že máme nová data
+    char stationName[9]; // 8 characters + null terminator
+    uint8_t ready;       // data ready indicator
 } RdsInfo;
 
 /**
- * @brief Inicializace modulu Si4703, zapnutí audia a RDS.
- * @param rst_port Port registru pro RESET pin (např. &PORTC)
- * @param rst_ddr  DDR registr pro RESET pin (např. &DDRC)
- * @param rst_pin  Číslo pinu RESET (např. PC0)
+ * @brief Si4703 module initialization
+ * @param rst_port module RST pin port (eg. &PORTC)
+ * @param rst_ddr  module RST pin Data Direction Register (eg. &DDRC)
+ * @param rst_pin  module RST pin number (eg. PC0)
  */
 void si4703_init(volatile uint8_t *rst_port, volatile uint8_t *rst_ddr, uint8_t rst_pin);
 
 /**
- * @brief Nastaví hlasitost výstupu (sluchátek).
- * @param volume Úroveň 0 (ticho) až 15 (max).
+ * @brief Output volume setting function
+ * @param volume scale from 0 (silence) to 15 (max volume)
  */
 void si4703_set_volume(uint8_t volume);
 
 /**
- * @brief Naladí konkrétní frekvenci.
- * @param freq Frekvence v 10kHz (např. 9480 pro 94.8 MHz).
+ * @brief Tunes the module to the chosen frequency
+ * @param freq Chosen frequency in MHz multiplied by 100 (94.8 MHz => 9480).
  */
 void si4703_set_freq(uint16_t freq);
 
 /**
- * @brief Vyhledá nejbližší silnou stanici.
- * @param direction SEEK_UP nebo SEEK_DOWN.
- * @return Naladěná frekvence.
+ * @brief Seeks the next station with a strong signal in the chosen direction
+ * @param direction SEEK_UP for a higher frequency or SEEK_DOWN for a lower frequency.
+ * @return Tuned frequency.
  */
 uint16_t si4703_seek(uint8_t direction);
 
 /**
- * @brief Přečte aktuální frekvenci z čipu.
+ * @brief Reads the currently tuned frequency.
  */
 uint16_t si4703_get_freq(void);
 
 /**
- * @brief Získá sílu signálu (RSSI).
- * @return Hodnota 0-127.
+ * @brief Returns the RSSI (signal strength) value.
+ * @return Value in the range of 0-127.
  */
 uint8_t si4703_get_rssi(void);
 
 /**
- * @brief Hlavní funkce pro RDS. Musí se volat v hlavní smyčce.
- * Kontroluje, zda přišla data, a pokud ano, aktualizuje název stanice.
- * @param rdsInfo Ukazatel na strukturu, kam se uloží název.
+ * @brief Function for handling RDS (station data)
+ * @note  Has to be called in the main loop of the program.
+ * @param rdsInfo Pointer to RdsInfo structure
  */
 void si4703_update_rds(RdsInfo *rdsInfo);
+
+/** @} */
 
 #endif

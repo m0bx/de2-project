@@ -1,4 +1,5 @@
 /* src/main.c */
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -13,7 +14,7 @@
 #include <util/atomic.h>
 #include "rotary_encoder.h"
 
-// Definice pinů (stejné jako předtím)
+// pin definitions
 #define BTN_PORT      PIND
 #define BTN_DDR       DDRD
 #define BTN_UP_PIN    PD7
@@ -24,7 +25,7 @@
 #define RADIO_RST_DDR  DDRC
 #define RADIO_RST_PIN  PC0
 
-// Globální proměnné
+// global variables
 volatile uint8_t update_display_flag = 0;
 uint16_t current_freq = 9500; 
 uint8_t current_vol = 10;
@@ -39,75 +40,64 @@ void clear_rds_buffer(void) {
 void draw_display(void) {
     char buffer[32];
     
-    // --- Statické proměnné pro uchování "minulého" stavu ---
-    // Inicializovány na nesmyslné hodnoty, aby se displej vykreslil poprvé určitě.
+    // static variables for storing the previous state
+    // initialized with mock values
     static uint16_t last_freq = 0;
     static uint8_t last_vol = 255;
     static uint8_t last_mute = 255;
     static int last_rssi = -1;
-    static char last_rds[10] = ""; // Buffer pro minule zobrazené RDS
+    static char last_rds[10] = "";
 
-    // Získáme aktuální RSSI (signál)
     int current_rssi = si4703_get_rssi();
 
-    // ---------------------------------------------------------
-    // 1. Sekce Frekvence (Vykreslit jen při změně)
-    // ---------------------------------------------------------
+    // overwrite frequency on change
     if (current_freq != last_freq) {
         oled_gotoxy(0, 0);
         oled_charMode(DOUBLESIZE);
         sprintf(buffer, "%d.%d MHz", current_freq / 100, (current_freq % 100) / 10);
         oled_puts(buffer);
         
-        last_freq = current_freq; // Uložit novou hodnotu
+        // overwriting with current value
+        last_freq = current_freq;
     }
 
-    // ---------------------------------------------------------
-    // 2. Sekce Status (Hlasitost / Mute / RSSI)
-    // ---------------------------------------------------------
-    // Překreslíme řádek, pokud se změnilo MUTE, Hlasitost nebo výrazně RSSI
-    // (u RSSI kontrolujeme změnu, aby čísla neustále neblikala, pokud je signál nestabilní)
+    // overwrite volume, mute status and RSSI on change
     if (is_muted != last_mute || current_vol != last_vol || current_rssi != last_rssi) {
         
         oled_charMode(NORMALSIZE);
         oled_gotoxy(0, 3);
 
         if (is_muted) {
-            // Používáme mezery na konci, abychom přepsali případný delší text z minula
+            // added spaces to overwrite any residual text
             oled_puts("Status: MUTED       "); 
         } else {
-            // Formátování s pevným počtem znaků pro přepsání starého textu
             sprintf(buffer, "Vol:%-2d RSSI:%-3d   ", current_vol, current_rssi);
             oled_puts(buffer);
         }
 
-        // Uložení aktuálních stavů
+        // overwriting with current values
         last_mute = is_muted;
         last_vol = current_vol;
         last_rssi = current_rssi;
     }
 
-    // ---------------------------------------------------------
-    // 3. Sekce RDS (Název stanice)
-    // ---------------------------------------------------------
-    // Porovnáme nový text se starým pomocí strcmp
+    // overwrite RSSI on change
+    // compare new string with old string using strcmp
     if (strcmp(rdsData.stationName, last_rds) != 0) {
         
-        // Vykreslíme popisek pouze jednou (volitelné, pokud se nemění, může být v initu)
         oled_gotoxy(0, 5);
         oled_puts("Station:"); 
 
         oled_gotoxy(0, 6);
-        // Pokud je nový text kratší než starý, musíme zbytek řádku vymazat mezerami
-        // Zde to řešíme tak, že rdsData.stationName by mělo být doplněno mezerami už v clear_rds_buffer()
+
+        // clearing residual characters is handled in clear_rds_buffer function
         oled_puts(rdsData.stationName);
         
-        // Uložíme si, co jsme právě vypsali
+        // overwriting with current values
         strcpy(last_rds, rdsData.stationName);
     }
-    
-    // Poznámka: Odstranili jsme oled_clrscr(), protože to způsobuje blikání.
-    // Místo toho přepisujeme stará data novými.
+
+    // draw display
     oled_display();
 }
 
@@ -123,19 +113,18 @@ ISR(TIMER0_OVF_vect) {
 
 int main(void) {
     _delay_ms(500);
-    // 1. UART Init
+
+    // init uart for debug
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
-    
-    // --- DŮLEŽITÁ ZMĚNA: Povolit přerušení HNED ZDE ---
-    // Aby se debug zprávy vypisovaly i když se program později zasekne
 
     encoder_init();
 
+    // enable interrupts
     sei(); 
     
     uart_puts("--- START SYSTEMU ---\r\n");
 
-    // 2. I2C a OLED
+    // I2C and OLED display init
     twi_init();
     oled_init(OLED_DISP_ON);
     oled_clrscr();
@@ -146,7 +135,7 @@ int main(void) {
 
     _delay_ms(100);
 
-    // 3. Tlačítka
+    // button setup
     gpio_mode_input_pullup(&BTN_DDR, BTN_UP_PIN);
     gpio_mode_input_pullup(&BTN_DDR, BTN_DOWN_PIN);
     //gpio_mode_input_pullup(&BTN_DDR, BTN_RST_PIN);
