@@ -122,6 +122,10 @@ The wiring diagram is shown in https://github.com/m0bx/de2-project/blob/main/FM_
 
 ### 2.4 Poster
 
+<div align="center">
+<img width="400" height="3024" alt="image" src="https://github.com/m0bx/de2-project/blob/main/Poster.png" />
+</div>
+
 ## References
 - AI model ChatGPT for editing text and support for programming https://chatgpt.com/
 - AI model Gemini for editing text and support for programming https://gemini.google.com/app
